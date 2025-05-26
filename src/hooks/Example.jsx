@@ -26,15 +26,37 @@ function Example() {
      * Cada vez que haya un cambio en el estado del componente se ejecuta aquello que este dentro del useEffect()
      */
 
-    useEffect(()=>{
-        console.log('Cambio del componente');
+    // useEffect(()=>{
+    //     console.log('Cambio del componente');
+    //     console.log('Mostrando referencias a elemento del DOM:');
+    //     console.log(miRef);
+    // });
+
+    // ? Caso2 : Ejecutar solo cuando cambie contador 1 o contador 2
+    // Cada vez que haya un cambio en cont1, se ejecuta lo que diga useEffect()
+    // en caso de que cambie cont2, no habrá ejecución
+
+    useEffect(() => {
+        console.log('CAMBIO EL ESTADO DEL CONTADOR 1');
         console.log('Mostrando referencias a elemento del DOM:');
         console.log(miRef);
-    });
+    },[cont1, cont2]);
 
     return (
         <div>
-            
+            <h1>****Ejemplo de useState(), useRef() y useEffect() *****</h1>
+            <h2>Contador 1: { cont1 }</h2>
+            <h2>Contador 2: { cont2 }</h2>
+            {/* Elemento referenciado */}
+            <h4 ref = { miRef }>
+                Ejemplo de elemento referenciado
+            </h4>
+
+            {/* botones para cambiar los contadores */}
+            <div>
+                <button onClick={incrementar1}>Incrementar 1</button>
+                <button onClick={incrementar2}>Incrementar 2</button>
+            </div>
         </div>
     )
 }
